@@ -15,8 +15,8 @@ public interface MobileDriverFactory {
           /*BrowserStack требует, чтобы все его настройки лежали внутри capability
          bstack:options*/
         Map<String, Object> bstackOptions = new HashMap<>();
-        bstackOptions.put("userName", System.getProperty("username","taron_u4MECj"));   //   <-  аутентификация
-        bstackOptions.put("accessKey", System.getProperty("accessKey","HqFx5LMVXHBbJadYASgu"));  //   <-  аутентификация
+        bstackOptions.put("userName", System.getProperty("username"));   //   <-  аутентификация
+        bstackOptions.put("accessKey", System.getProperty("accessKey"));  //   <-  аутентификация
         bstackOptions.put("projectName", config.projectName());  //   <-  метаданные
         bstackOptions.put("buildName", config.buildName());  //   <-  метаданные
         bstackOptions.put("sessionName", config.sessionName()); //   <-  метаданные
