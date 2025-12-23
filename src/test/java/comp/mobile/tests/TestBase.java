@@ -3,13 +3,12 @@ package comp.mobile.tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import comp.mobile.config.OwnerConfig;
+import comp.mobile.driver.AndroidDriverFactory;
+import comp.mobile.driver.IoSDriverFactory;
 import comp.mobile.helpers.Attach;
-import comp.mobile.driver.MobileDriverFactory;
 import comp.mobile.driver.Platform;
 import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,14 +16,12 @@ import org.junit.jupiter.api.BeforeEach;
 import java.net.MalformedURLException;
 
 
-
-
 public class TestBase {
 
     //AppiumDriver — это базовый (родительский) класс для всех мобильных драйверов Appium.
     protected static AppiumDriver driver;
-    protected OwnerConfig config = ConfigFactory.create(OwnerConfig.class);
     protected static Platform platform;
+
 
     @BeforeAll
     static void setup() {
@@ -38,7 +35,12 @@ public class TestBase {
         String platformName = System.getProperty("platform", "android");
         platform = Platform.valueOf(platformName.toUpperCase());
 
-        driver = MobileDriverFactory.createDriver(platform, config);
+        if (platform == Platform.ANDROID) {
+            driver = new AndroidDriverFactory().createDriver();
+        } else {
+            driver = new IoSDriverFactory().createDriver();
+        }
+
 
         WebDriverRunner.setWebDriver(driver);
 

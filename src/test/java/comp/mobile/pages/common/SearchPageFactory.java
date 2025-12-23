@@ -1,8 +1,8 @@
 package comp.mobile.pages.common;
 
 import comp.mobile.driver.Platform;
-import comp.mobile.pages.android.SearchPageAndroid;
-import comp.mobile.pages.ios.SearchPageIOS;
+import comp.mobile.pages.android.SearchPageImpl;
+import comp.mobile.pages.ios.SearchPageImpl2;
 
 public class SearchPageFactory {
 
@@ -10,9 +10,9 @@ public class SearchPageFactory {
 
 
         if (platform == Platform.ANDROID) {
-            return new SearchPageAndroid();
+            return new SearchPageImpl();
         } else {
-            return new SearchPageIOS();
+            return new SearchPageImpl2();
         }
     }
 }

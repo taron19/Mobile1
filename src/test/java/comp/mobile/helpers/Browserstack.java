@@ -8,7 +8,7 @@ public class Browserstack {
         String url = String.format("https://api.browserstack.com/app-automate/sessions/%s.json", sessionID);
 
         return given()
-                .auth().basic(System.getProperty("username"), System.getProperty("accessKey"))
+                .auth().basic(System.getProperty("username","taron_u4MECj"), System.getProperty("accessKey","HqFx5LMVXHBbJadYASgu"))
                 .get(url)
                 .then()
                 .log().status()

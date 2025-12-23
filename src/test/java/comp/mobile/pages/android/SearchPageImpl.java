@@ -1,23 +1,21 @@
-package comp.mobile.pages.ios;
+package comp.mobile.pages.android;
 
 import comp.mobile.pages.common.SearchPage;
 import comp.mobile.utils.Waits;
 import io.appium.java_client.AppiumBy;
-
 import org.openqa.selenium.By;
 
-public class SearchPageIOS implements SearchPage {
 
-
+public class SearchPageImpl implements SearchPage {
 
     private final By searchButton =
-            AppiumBy.accessibilityId("Search");
-
-    private final By searchInput =
             AppiumBy.accessibilityId("Search Wikipedia");
 
+    private final By searchInput =
+            AppiumBy.id("org.wikipedia.alpha:id/search_src_text");
+
     private final By results =
-            AppiumBy.iOSClassChain("**/XCUIElementTypeCell");
+            AppiumBy.className("android.widget.TextView");
 
     @Override
     public void search(String text) {
@@ -32,7 +30,12 @@ public class SearchPageIOS implements SearchPage {
                 .size();
 
         if (size == 0) {
-            throw new AssertionError("iOS: результаты поиска не найдены");
+            throw new AssertionError("Android: результаты поиска не найдены");
         }
     }
 }
+
+
+
+
+
